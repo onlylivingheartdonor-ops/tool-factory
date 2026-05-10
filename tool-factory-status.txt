@@ -1,0 +1,22 @@
+Project: One-problem websites
+Status: Tool #1 complete and working locally
+
+Stack:
+- Next.js App Router
+- Config-driven Tool Shell
+- No @/ imports (relative paths only)
+- Domain detection with localhost fallback
+
+Tool #1:
+- Email Attachment Size Checker
+- Verified working
+- Do not modify infrastructure
+
+Next step:
+- Tool #2 (YouTube Title Preview)
+- Add config only, no plumbing changes
+
+Constraints:
+- Step-by-step instructions only
+- ≤3 steps at a time
+- No programming explanations
