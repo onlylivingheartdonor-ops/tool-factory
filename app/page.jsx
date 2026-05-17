@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react"
+import { RELATED_LINKS as RELATED } from "./lib/links"
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
@@ -82,20 +83,6 @@ const PROVIDERS = [
   { name: "iCloud Mail", limit: 20, note: "20 MB limit" },
 ]
 
-{/* ========== MONEYWISE LINK — START ========== */}
-<div style={{ background: "#fff", border: "1px solid #e0dbd3", borderRadius: "4px", padding: "1rem 1.5rem", marginBottom: "1.5rem", textAlign: "center" }}>
-  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "13px", color: "#888" }}>
-    Looking for more free financial tools?{" "}
-    <a href="https://moneywisecalculator.com" style={{ color: "#b45309", textDecoration: "underline" }}>
-      Visit MoneyWiseCalculator.com
-    </a>
-  </p>
-</div>
-{/* ========== MONEYWISE LINK — END ========== */}
-
-{/* RELATED TOOLS */}
-import { RELATED_LINKS as RELATED } from "./lib/links"
-
 function getStatus(encodedMB) {
   if (encodedMB <= 20) return { key: "safe", title: "Good to go", msg: "This file should send successfully with all major email providers." }
   if (encodedMB <= 25) return { key: "warn", title: "Borderline", msg: "This file may work with Gmail or Yahoo Mail (25 MB limit) but will likely fail with Outlook and iCloud Mail (20 MB limit)." }
@@ -168,7 +155,7 @@ export default function Page() {
           <div className="eas-or">or</div>
 
           <div
-            className={`eas-upload-zone${drag ? " drag" : ""}`}
+            className={"eas-upload-zone" + (drag ? " drag" : "")}
             onClick={() => fileRef.current.click()}
             onDragOver={e => { e.preventDefault(); setDrag(true) }}
             onDragLeave={() => setDrag(false)}
@@ -192,7 +179,7 @@ export default function Page() {
 
           {result && (
             <>
-              <div className={`eas-result-banner ${result.key}`}>
+              <div className={"eas-result-banner " + result.key}>
                 <p className="eas-result-title">{result.title}</p>
                 <p className="eas-result-sub">{result.msg}</p>
                 <p className="eas-encoding-note">
@@ -208,7 +195,7 @@ export default function Page() {
                       <p className="eas-provider-name">{p.name}</p>
                       <p className="eas-provider-limit">{p.note}</p>
                     </div>
-                    <span className={`eas-pill ${p.pass ? "pass" : "fail"}`}>
+                    <span className={"eas-pill " + (p.pass ? "pass" : "fail")}>
                       {p.pass ? "Will send" : "Too large"}
                     </span>
                   </div>
@@ -301,6 +288,17 @@ export default function Page() {
             <p>Getting into the habit of checking file size before sending — rather than after a bounce — saves time and avoids awkward follow-up messages explaining why something didn&apos;t arrive.</p>
           </div>
         </div>
+
+        {/* ========== MONEYWISE LINK — START ========== */}
+        <div style={{ background: "#fff", border: "1px solid #e0dbd3", borderRadius: "4px", padding: "1rem 1.5rem", marginBottom: "1.5rem", textAlign: "center" }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "13px", color: "#888" }}>
+            Looking for more free financial tools?{" "}
+            <a href="https://moneywisecalculator.com" style={{ color: "#b45309", textDecoration: "underline" }}>
+              Visit MoneyWiseCalculator.com
+            </a>
+          </p>
+        </div>
+        {/* ========== MONEYWISE LINK — END ========== */}
 
         {/* RELATED TOOLS */}
         <div className="eas-card">
